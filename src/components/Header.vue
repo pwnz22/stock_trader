@@ -10,7 +10,7 @@
                 <router-link to="/portfolio" activeClass="active" tag="li"><a>Портфолио</a></router-link>
                 <router-link to="/stocks" activeClass="active" tag="li"><a>Акции</a></router-link>
             </ul>
-            <strong class="navbar-text navbar-right">Сбережения: {{ funds }}</strong>
+            <strong class="navbar-text navbar-right">Сбережения: {{ funds | currency }}</strong>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Конец Дня</a></li>
                 <li class="dropdown">
