@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <router-lin to="/" class="navbar-brand">Продавец акций</router-lin>
+                <router-link to="/" class="navbar-brand">Продавец акций</router-link>
             </div>
 
             <div class="collapse navbar-collapse">
