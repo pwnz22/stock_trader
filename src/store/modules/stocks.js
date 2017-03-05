@@ -6,7 +6,6 @@ const state = {
 
 const mutations = {
     'SET_STOCKS' (state, stocks) {
-        console.log(stocks)
         state.stocks = stocks
     },
     'RANDOM_STOCKS' (state) {
@@ -16,10 +15,9 @@ const mutations = {
 
 const actions = {
     buyStock: ({ commit }, order) => {
-        commit()
+        commit('BUY_STOCK', order)
     },
     initStocks: ({ commit }) => {
-        console.log(stocks)
         commit('SET_STOCKS', stocks)
     },
     randomizeStocks: ({ commit }) => {

@@ -14,7 +14,7 @@
                 <div class="pull-right">
                     <button
                         class="btn btn-success"
-                        @click="butStock" :disabled="quantity <= 0 || !Number.isInteger(quantity)">Купить</button>
+                        @click="buyStock" :disabled="quantity <= 0 || !Number.isInteger(quantity)">Купить</button>
                 </div>
             </div>
         </div>
@@ -32,12 +32,13 @@
         },
 
         methods: {
-            butStock() {
+            buyStock() {
                 const order = {
                     stockId: this.stock.id,
                     stockPrice: this.stock.price,
                     quantity: this.quantity
                 }
+                this.$store.dispatch('buyStock', order)
                 this.quantity = 0
             }
         }
