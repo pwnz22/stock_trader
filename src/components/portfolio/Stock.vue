@@ -9,12 +9,19 @@
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <input type="number" class="form-control" placeholder="Кол-во" v-model.number="quantity">
+                    <input
+                        type="number"
+                        class="form-control"
+                        :class="{ danger: insufficientQuantity }"
+                        placeholder="Кол-во" v-model.number="quantity"
+                    >
                 </div>
                 <div class="pull-right">
                     <button
                         class="btn btn-success"
-                        @click="sellStock" :disabled="quantity <= 0 || !Number.isInteger(quantity)">Купить</button>
+                        @click="sellStock"
+                        :disabled="insufficientQuantity || quantity <= 0 || !Number.isInteger(quantity)"
+                    >{{ insufficientQuantity ? 'Мало Акций' : 'Продать' }}</button>
                 </div>
             </div>
         </div>
@@ -32,6 +39,12 @@
             }
         },
 
+        computed: {
+            insufficientQuantity() {
+                return this.quantity > this.stock.quantity
+            }
+        },
+
         methods: {
             ...mapActions({
                 placeSellOrder: 'sellStock'
@@ -40,7 +53,7 @@
                 const order = {
                     stockId: this.stock.id,
                     stockPrice: this.stock.price,
-                    quantity: this.stock.quantity
+                    quantity: this.quantity
                 }
                 this.placeSellOrder(order)
                 this.quantity = 0
@@ -48,3 +61,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .danger {
+        border: 1px solid red;
+    }
+</style>
