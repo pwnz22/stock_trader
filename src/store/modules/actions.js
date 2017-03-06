@@ -1,6 +1,6 @@
 export const loadData = ({ commit }) => {
     axios.get('data.json')
-        .then(response => response.json())
+        .then(response => response.data)
         .then(data => {
             if (data) {
                 const stocks = data.stocks
