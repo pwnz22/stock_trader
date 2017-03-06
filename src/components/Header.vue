@@ -26,13 +26,10 @@
                         aria-haspopup="true"
                         aria-expanded="false"
                     >Сохранить & Загрузить <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" @click="saveData">Сохранить данные</a></li>
+                        <li><a href="#" @click="loadData">Загрузить данные</a></li>
+                    </ul>
                 </li>
             </ul>
             </div><!-- /.navbar-collapse -->
@@ -59,6 +56,17 @@
             ]),
             endDay() {
                 this.randomizeStocks()
+            },
+            saveData() {
+                const data = {
+                    funds: this.$store.getters.funds,
+                    stockPortfolio: this.$store.getters.stockPortfolio,
+                    stocks: this.$store.getters.stocks
+                }
+                axios.put('data.json', data)
+            },
+            loadData() {
+                //
             }
         }
     }
